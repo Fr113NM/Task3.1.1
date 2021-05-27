@@ -7,7 +7,7 @@
 </head>
 <body>
 <div>
-    <form method="post" action="/login">
+    <form method="post" th:action="@{/login}">
         <input name="username"/>
         <input name="password"/>
         <input type="submit"/>
