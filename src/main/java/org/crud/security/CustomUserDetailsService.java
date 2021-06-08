@@ -1,5 +1,6 @@
 package org.crud.security;
 
+import org.crud.entities.Role;
 import org.crud.entities.User;
 import org.crud.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
