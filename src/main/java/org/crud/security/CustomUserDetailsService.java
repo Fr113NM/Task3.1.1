@@ -8,9 +8,13 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
+import java.util.List;
+
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
     @Autowired
@@ -30,43 +34,43 @@ public class CustomUserDetailsService implements UserDetailsService {
         return authorities;
     }
 
-//    @Transactional
-//    public void addUser(User user) {
-//        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-//        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-//        userRepository.saveAndFlush(user);
-//    }
+    @Transactional
+    public void addUser(User user) {
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        userRepository.saveAndFlush(user);
+    }
 
-//    @Transactional
-//    public void updateUser(User user) {
-//        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-//        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-//
-//    }
-//
-//    @Transactional
-//    public void removeUser(int id) {
-//
-//    }
-//
-//    @Transactional
-//    public User getUserById(int id) {
-//        return null; //userDao.getUserById(id);
-//    }
-//
-//    @Transactional
-//    public List<User> listUser() {
-//        return null;
-//    }
-//
-//    @Override
-//    @Transactional
-//    public List<Role> listRole() {
-//        return null;
-//    }
-//
-//    @Override
-//    public Role getRoleById(Long id) {
-//        return null;
-//    }
+    @Transactional
+    public void updateUser(User user) {
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+
+    }
+
+    @Transactional
+    public void removeUser(int id) {
+
+    }
+
+    @Transactional
+    public User getUserById(int id) {
+        return null;
+    }
+
+    @Transactional
+    public List<User> listUser() {
+        return null;
+    }
+
+    @Override
+    @Transactional
+    public List<Role> listRole() {
+        return null;
+    }
+
+    @Override
+    public Role getRoleById(Long id) {
+        return null;
+    }
 }

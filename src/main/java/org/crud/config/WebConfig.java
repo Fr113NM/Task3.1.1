@@ -23,11 +23,11 @@ public class WebConfig implements WebMvcConfigurer {
     @Autowired
     private MessageSource messageSource;
 
-//    private final ApplicationContext applicationContext;
-//
-//    public WebConfig(ApplicationContext applicationContext) {
-//        this.applicationContext = applicationContext;
-//    }
+    private final ApplicationContext applicationContext;
+
+    public WebConfig(ApplicationContext applicationContext) {
+        this.applicationContext = applicationContext;
+    }
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {

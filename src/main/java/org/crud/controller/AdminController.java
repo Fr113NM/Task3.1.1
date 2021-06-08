@@ -4,6 +4,7 @@ import org.crud.entities.Role;
 import org.crud.entities.User;
 import org.crud.repositories.RoleRepository;
 import org.crud.repositories.UserRepository;
+import org.crud.security.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +16,13 @@ import java.util.Set;
 
 @Controller
 public class AdminController {
+
+    private final CustomUserDetailsService userService;
+
+    @Autowired
+    public AdminController(CustomUserDetailsService userService) {
+        this.userService = userService;
+    }
 
     @Autowired
     private UserRepository userRepository;
@@ -53,29 +61,29 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-//    @RequestMapping("remove/{id}")
-//    public String removeUser(@PathVariable("id") int id, @ModelAttribute("user") User user) {
-//        this.userService.removeUser(id);
-//
-//        return "redirect:/admin";
-//    }
-//
-//    @RequestMapping("edit/{id}")
-//    public String editUser(@PathVariable("id") int id, Model model) {
-//        model.addAttribute("user", this.userService.getUserById(id));
-//        model.addAttribute("listUsers", this.userService.listUser());
-//        model.addAttribute("listRole", this.userService.listRole());
-//
-//        return "admin";
-//
-//    }
-//
-//    @RequestMapping("userdata/{id}")
-//    public String userData(@PathVariable("id") int id, Model model) {
-//        model.addAttribute("user", this.userService.getUserById(id));
-//
-//        return "userdata";
-//
-//    }
+    @RequestMapping("remove/{id}")
+    public String removeUser(@PathVariable("id") int id, @ModelAttribute("user") User user) {
+        this.userService.removeUser(id);
+
+        return "redirect:/admin";
+    }
+
+    @RequestMapping("edit/{id}")
+    public String editUser(@PathVariable("id") int id, Model model) {
+        model.addAttribute("user", this.userService.getUserById(id));
+        model.addAttribute("listUsers", this.userService.listUser());
+        model.addAttribute("listRole", this.userService.listRole());
+
+        return "admin";
+
+    }
+
+    @RequestMapping("userdata/{id}")
+    public String userData(@PathVariable("id") int id, Model model) {
+        model.addAttribute("user", this.userService.getUserById(id));
+
+        return "userdata";
+
+    }
 
 }

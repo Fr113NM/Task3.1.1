@@ -16,7 +16,7 @@ public class UserController {
 
     @RequestMapping("/user")
     public String userData(Model model, Principal principal) {
-        model.addAttribute("user", this.userRepository.findByName(principal.getName()));
+        model.addAttribute("user", this.userRepository.findByName(principal.getName()).get());
 
         return "user";
 
