@@ -64,13 +64,13 @@ public class CustomUserDetailsService implements UserDetailsService {
         return null;
     }
 
-    @Override
+
     @Transactional
     public List<Role> listRole() {
         return null;
     }
 
-    @Override
+
     public Role getRoleById(Long id) {
         return null;
     }

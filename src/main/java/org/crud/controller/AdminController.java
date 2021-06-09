@@ -68,7 +68,7 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @RequestMapping("edit/{id}")
+    @RequestMapping(value = "edit/{id}", method = RequestMethod.GET)
     public String editUser(@PathVariable("id") int id, Model model) {
         model.addAttribute("user", this.userService.getUserById(id));
         model.addAttribute("listUsers", this.userService.listUser());
