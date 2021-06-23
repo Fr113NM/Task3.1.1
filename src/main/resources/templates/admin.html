@@ -19,7 +19,7 @@
         <td>View</td>
     </tr>
 
-    <tr th:if="${listUsers.empty}">
+    <tr th:if="${listUsers.isEmpty()}">
         <td colspan="2"> No Users</td>
     </tr>
     <tr th:each="user : ${listUsers}">
