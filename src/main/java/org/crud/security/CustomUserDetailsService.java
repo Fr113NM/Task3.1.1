@@ -2,6 +2,7 @@ package org.crud.security;
 
 import org.crud.entities.Role;
 import org.crud.entities.User;
+import org.crud.repositories.RoleRepository;
 import org.crud.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -18,8 +19,15 @@ import java.util.List;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
-    @Autowired
+
     private UserRepository userRepository;
+    private RoleRepository roleRepository;
+
+    @Autowired
+    public CustomUserDetailsService(UserRepository userRepository, RoleRepository roleRepository) {
+        this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
@@ -46,32 +54,33 @@ public class CustomUserDetailsService implements UserDetailsService {
     public void updateUser(User user) {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-
+        userRepository.saveAndFlush(user);
     }
 
     @Transactional
     public void removeUser(int id) {
-
+        userRepository.deleteById(id);
     }
 
     @Transactional
     public User getUserById(int id) {
-        return null;
+        User user = userRepository.findById(id).get();
+        return user;
     }
 
     @Transactional
     public List<User> listUser() {
-        return null;
+        return userRepository.findAll();
     }
 
 
     @Transactional
     public List<Role> listRole() {
-        return null;
+        return roleRepository.findAll();
     }
 
-
+    @Transactional
     public Role getRoleById(Long id) {
-        return null;
+        return roleRepository.findById(id).get();
     }
 }

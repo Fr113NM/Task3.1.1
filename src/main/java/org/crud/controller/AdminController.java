@@ -48,9 +48,9 @@ public class AdminController {
         Set<Role> set = new HashSet<>();
         if (role == null) {
 
-            set.add(this.roleRepository.getOne(2));
+            set.add(this.roleRepository.getOne( (long) 2 ));
         } else {
-            set.add(this.roleRepository.getOne(role));
+            set.add(this.roleRepository.getOne( Long.valueOf ( role ) ));
         }
         user.setRoles(set);
         if (user.getId() == null) {
