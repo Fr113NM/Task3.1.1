@@ -62,14 +62,14 @@ public class AdminController {
     }
 
     @RequestMapping("remove/{id}")
-    public String removeUser(@PathVariable("id") int id, @ModelAttribute("user") User user) {
+    public String removeUser(@PathVariable("id") Long id, @ModelAttribute("user") User user) {
         this.userService.removeUser(id);
 
         return "redirect:/admin";
     }
 
     @RequestMapping(value = "edit/{id}", method = RequestMethod.GET)
-    public String editUser(@PathVariable("id") int id, Model model) {
+    public String editUser(@PathVariable("id") Long id, Model model) {
         model.addAttribute("user", this.userService.getUserById(id));
         model.addAttribute("listUsers", this.userService.listUser());
         model.addAttribute("listRole", this.userService.listRole());
@@ -79,7 +79,7 @@ public class AdminController {
     }
 
     @RequestMapping("userdata/{id}")
-    public String userData(@PathVariable("id") int id, Model model) {
+    public String userData(@PathVariable("id") Long id, Model model) {
         model.addAttribute("user", this.userService.getUserById(id));
 
         return "userdata";

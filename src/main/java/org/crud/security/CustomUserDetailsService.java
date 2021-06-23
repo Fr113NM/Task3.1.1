@@ -58,12 +58,12 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
     @Transactional
-    public void removeUser(int id) {
+    public void removeUser(Long id) {
         userRepository.deleteById(id);
     }
 
     @Transactional
-    public User getUserById(int id) {
+    public User getUserById(Long id) {
         User user = userRepository.findById(id).get();
         return user;
     }

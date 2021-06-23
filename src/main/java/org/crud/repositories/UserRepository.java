@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 import java.util.Optional;
 
-public interface UserRepository extends JpaRepository<User, Integer> {
+public interface UserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findByName(String name);
 
@@ -15,7 +15,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     <S extends User> S saveAndFlush(S s);
 
     @Override
-    User getOne(Integer integer);
+    User getOne(Long integer);
 
     @Override
     <S extends User> List<S> findAll(Example<S> example);
