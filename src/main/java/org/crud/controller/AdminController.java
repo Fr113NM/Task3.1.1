@@ -4,7 +4,7 @@ import org.crud.entities.Role;
 import org.crud.entities.User;
 import org.crud.repositories.RoleRepository;
 import org.crud.repositories.UserRepository;
-import org.crud.security.CustomUserDetailsService;
+import org.crud.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

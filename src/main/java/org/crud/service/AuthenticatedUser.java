@@ -1,4 +1,4 @@
-package org.crud.security;
+package org.crud.service;
 
 import org.crud.entities.Role;
 import org.crud.entities.User;
